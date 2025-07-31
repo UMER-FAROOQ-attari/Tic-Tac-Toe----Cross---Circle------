@@ -1,6 +1,6 @@
 let boxes = document.querySelectorAll(".box")
 let rest = document.getElementById("reset")
-
+let masg = document.querySelector(".masg")
 let turn0 = true;
 const winPatterns = [
     [0,1,2],
@@ -27,6 +27,15 @@ boxes.forEach((box)=>{
         heckwinner()
     })
 })
+const disablebox = ()=>{
+for(let box of boxes){
+    box.disabled = true
+}
+}
+const winershow = (winner) =>{
+  masg.innerHTML = `Congratulations ${winner} is Winner`   
+  disablebox();
+}
 const heckwinner = ()=>{
     for( let Pattern of winPatterns){
        let pos1val1 = boxes[Pattern[0]].innerHTML
@@ -34,7 +43,7 @@ const heckwinner = ()=>{
        let pos1val3 = boxes[Pattern[2]].innerHTML
   if(pos1val1 != "" && pos1val2 != ""&& pos1val3 !=""){
     if(pos1val1 === pos1val2 && pos1val2 === pos1val3 ){
-        console.log("winnwe ")
+        winershow(pos1val1)
     }
     
 }}
